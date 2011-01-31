@@ -1,3 +1,6 @@
+Overview
+========
+
 Recent versions of Homebrew have the ability to install brews from both
 URLs and local file paths.
 
@@ -8,3 +11,25 @@ These brews can be installed via the raw GitHub URLs, or by cloning this
 repository locally and installing off the local disk.
 
 This REPLACES the "Homebrew Duplicates" branch.
+
+
+Contents
+========
+duplicates
+    These brews duplicate OS X functionality, though may provide newer or
+    bug-fixed versions. (Homebrew policy is to allow duplicates only in
+    some specific cases.)
+
+versions
+    These brews provide mulitple versions of the same software package.
+    (Homebrew policy is to maintain a single, stable version of a given
+    package.)
+
+binary
+    These brews provide only binary installs.
+
+non-free
+    These brews provide non-free software.
+
+other
+    Other brews that have not been accepted into master.
