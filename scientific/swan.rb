@@ -8,8 +8,6 @@ class Swan <Formula
 
   depends_on 'open-mpi' if ARGV.include? '--enable-mpi'
 
-  depends_on 'gfortran' => :build
-
   def options
     [
       ['--enable-mpi', 'Parallelize the SWAN model using OpenMPI'],
@@ -18,6 +16,7 @@ class Swan <Formula
   end
 
   def install
+    ENV.fortran
     # If things aren't built one after the other, gfortran gets confused about
     # missing .mod files.
     ENV.deparallelize

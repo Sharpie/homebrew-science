@@ -8,9 +8,10 @@ class Xmdf <Formula
   depends_on 'hdf5'
 
   depends_on 'cmake' => :build
-  depends_on 'gfortran' => :build
 
   def install
+    ENV.fortran
+
     Dir.chdir('build') do
       system "cmake .. #{std_cmake_parameters}"
       system "make install"

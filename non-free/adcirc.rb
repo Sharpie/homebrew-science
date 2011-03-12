@@ -34,13 +34,12 @@ class Adcirc <Formula
 
   depends_on 'open-mpi'
 
-  depends_on 'gfortran' => :build
-
   def patches
     {:p1 => DATA}
   end
 
   def install
+    ENV.fortran
     # If make runs tasks in parallel, gfortran can't find mod files at the
     # appropriate times.
     ENV.deparallelize
