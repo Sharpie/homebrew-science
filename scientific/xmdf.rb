@@ -1,6 +1,6 @@
 require 'formula'
 
-class Xmdf <Formula
+class Xmdf < Formula
   homepage 'http://www.xmdf.org'
   url 'http://dl.dropbox.com/u/72178/dist/xmdf-unix-1.7.tar.gz'
   md5 'a7d1769044a782b0d2f4c286d831fd9d'

@@ -1,6 +1,6 @@
 require 'formula'
 
-class CachedFileDownloadStrategy <CurlDownloadStrategy
+class CachedFileDownloadStrategy < CurlDownloadStrategy
   def fetch
     # A download strategy that installs only from the Homebrew cache. This is
     # useful for writing brews that install software for which the source code
@@ -23,7 +23,7 @@ cache directory is located at:
   end
 end
 
-class Adcirc <Formula
+class Adcirc < Formula
   url 'adc49_21.tar.gz'
   homepage 'http://adcirc.org/'
   md5 'e3d3717fc0fa2b540d3d8d88a017a224'

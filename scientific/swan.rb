@@ -1,6 +1,6 @@
 require 'formula'
 
-class Swan <Formula
+class Swan < Formula
   homepage 'http://swanmodel.sourceforge.net/'
   url 'http://swanmodel.sourceforge.net/download/zip/swan4081.tar.gz'
   version '40.81'
