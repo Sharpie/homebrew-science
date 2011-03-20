@@ -27,11 +27,10 @@ end
 __END__
 Patch to remove Triangle dependencies (as those are handled by the Triangle
 formula), to enable NetCDF support and to sort out compiler flags.
-diff --git a/Makefile b/Makefile
-index eaf69d0..c2f764c 100644
---- a/Makefile
+diff -u b/Makefile b/Makefile
+--- b/Makefile
 +++ b/Makefile
-@@ -10,20 +10,20 @@ INSTALLDIR = /usr/local/ace
+@@ -10,20 +10,20 @@
  # Uncomment the following 3 defines for netCDF support
  # adjust paths to suit local conditions
  #
@@ -59,7 +58,7 @@ index eaf69d0..c2f764c 100644
  
  OBJS = main.o\
  	vers.o\
-@@ -75,7 +75,6 @@ OBJS = main.o\
+@@ -75,7 +75,6 @@
  	params.o\
  	malerts.o\
  	motifutils.o\
@@ -67,7 +66,7 @@ index eaf69d0..c2f764c 100644
  	tritest.o\
  	vedglist.o\
  	vgeometry.o\
-@@ -140,7 +139,6 @@ SRCS = main.c\
+@@ -140,7 +139,6 @@
  	params.c\
  	malerts.c\
  	motifutils.c\
@@ -75,7 +74,7 @@ index eaf69d0..c2f764c 100644
  	tritest.c\
  	vedglist.c\
  	vgeometry.c\
-@@ -173,21 +171,17 @@ INCS = motifinc.h\
+@@ -173,21 +171,17 @@
  	patterns.h\
  	special.h\
  	graphics.h\
@@ -83,11 +82,13 @@ index eaf69d0..c2f764c 100644
  	vdefines.h\
  	vdefs.h
  
- all: xmgredit5
+-all: xmgredit5
++all: xmgredit
  
- xmgredit5: $(OBJS) $(PARSOBJS)
+-xmgredit5: $(OBJS) $(PARSOBJS)
 -	$(CC) $(OBJS) $(PARSOBJS) -o xmgredit5 $(LIBS)
-+	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(PARSOBJS) -o xmgredit5 $(LIBS)
++xmgredit: $(OBJS) $(PARSOBJS)
++	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(PARSOBJS) -o xmgredit $(LIBS)
  
  $(OBJS): defines.h globals.h
  eventproc.c: defines.h globals.h
@@ -98,3 +99,19 @@ index eaf69d0..c2f764c 100644
  pars.o: pars.y
  
  vers.o: $(SRCS) pars.y
+@@ -218,8 +212,8 @@
+ 	touch rcs
+ 	grep Id:  Makefile $(SRCS) $(INCS) $(PARSSRCS) > release.tmp
+ 
+-install: xmgredit5
+-	cp -p xmgredit5 $(INSTALLDIR)/bin/xmgredit5
++install: xmgredit
++	cp -p xmgredit $(INSTALLDIR)/bin/xmgredit
+ 
+ lint:
+ 	lint  -axv -wk -Nn10000 -Nd10000 $(SRCS) $(PARSSRCS)
+@@ -230,3 +224,3 @@
+ clean:
+-	/bin/rm *.o xmgredit5
++	/bin/rm *.o xmgredit
+ 
