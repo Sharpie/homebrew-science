@@ -7,7 +7,7 @@ class RtmpdumpYle <Formula
   md5 '847b33a19161390d2dc568255af244d1'
 
   def install
-    system "make SYS=darwin"
-    system "make install SYS=darwin"
+    system "make", "SYS=darwin"
+    system "make", "install", "SYS=darwin", "prefix=#{prefix}", "mandir=#{man}"
   end
 end
