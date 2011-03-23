@@ -12,7 +12,7 @@ class Princexml <Formula
   end
 
   def install
-    system "export prefix=#{prefix};install.sh"
+    system "export prefix=#{prefix};./install.sh"
   end
 end
 
