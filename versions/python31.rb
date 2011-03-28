@@ -1,15 +1,5 @@
 require 'formula'
 
-<<-COMMENTS
-Versions
---------
-This formula is currently tracking version 3.1.x.
-
-Python 2.x is available as a separate formula:
-  brew install python
-
-COMMENTS
-
 # Was a Framework build requested?
 def build_framework?; ARGV.include? '--framework'; end
 
@@ -18,7 +8,7 @@ def as_framework?
   (self.installed? and File.exists? prefix+"Frameworks/Python.framework") or build_framework?
 end
 
-class Python3 < Formula
+class Python31 < Formula
   url 'http://www.python.org/ftp/python/3.1.3/Python-3.1.3.tar.bz2'
   homepage 'http://www.python.org/'
   md5 'ad5e5f1c07e829321e0a015f8cafe245'
