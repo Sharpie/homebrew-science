@@ -5,7 +5,7 @@ class Nano <Formula
   homepage 'http://www.nano-editor.org/'
   md5 '03233ae480689a008eb98feb1b599807'
 
-  depends_on 'ncursesw'
+  depends_on "s-lang"
 
   def install
     system "./configure", "--disable-debug", "--disable-dependency-tracking",
@@ -15,7 +15,8 @@ class Nano <Formula
                           "--enable-multibuffer",
                           "--enable-nanorc",
                           "--disable-nls",
-                          "--enable-utf8"
+                          "--enable-utf8",
+                          "--with-slang=#{HOMEBREW_PREFIX}"
     system "make install"
   end
 end
