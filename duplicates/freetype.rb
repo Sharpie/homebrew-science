@@ -1,9 +1,9 @@
 require 'formula'
 
 class Freetype <Formula
-  url 'http://mirror.dknss.com/nongnu/freetype/freetype-2.3.9.tar.gz'
+  url 'http://download.savannah.gnu.org/releases/freetype/freetype-2.3.12.tar.gz'
   homepage 'http://freetype.sourceforge.net'
-  md5 '9c2744f1aa72fe755adda33663aa3fad'
+  md5 '6fc690d9b34154b51a919ff466cea90c'
 
   def options
     [["--native",
