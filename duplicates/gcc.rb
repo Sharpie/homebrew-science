@@ -1,5 +1,19 @@
 require 'formula'
 
+# NOTE:
+#
+# Two exciting enhancements in GCC 4.6.0 are currently unavailable.
+#
+# Link-time optimization (LTO) is broken due to changes in XCode 3.2.6 and 4.0.
+# This should be fixed in GCC 4.6.1:
+#   http://lists.macosforge.org/pipermail/macports-dev/2011-March/014278.html
+#
+# GCC 4.6.0 adds the gccgo compiler for the Go language. However, gccgo "is
+# currently known to work on GNU/Linux and RTEMS. Solaris support is in
+# progress. It may or may not work on other platforms."
+#
+# It does not work on OS X. Yet.
+
 def cxx?
   ARGV.include? '--enable-cxx'
 end
@@ -32,17 +46,17 @@ def profiledbuild?
   ARGV.include? '--enable-profiled-build'
 end
 
-class Ecj <Formula
+class Ecj < Formula
   # Little Known Fact: ecj, Eclipse Java Complier, is required in order to
   # produce a gcj compiler that can actually parse Java source code.
   url 'ftp://sourceware.org/pub/java/ecj-4.5.jar'
   md5 'd7cd6a27c8801e66cbaa964a039ecfdb'
 end
 
-class Gcc <Formula
+class Gcc < Formula
   homepage 'http://gcc.gnu.org'
-  url 'ftp://ftp.gnu.org/gnu/gcc/gcc-4.5.2/gcc-4.5.2.tar.bz2'
-  md5 'd6559145853fbaaa0fd7556ed93bce9a'
+  url 'ftp://ftp.gnu.org/gnu/gcc/gcc-4.6.0/gcc-4.6.0.tar.bz2'
+  md5 '93d1c436bf991564524701259b6285a2'
 
   depends_on 'gmp'
   depends_on 'libmpc'
@@ -65,12 +79,12 @@ class Gcc <Formula
   skip_clean :all
 
   def install
-    gmp = Formula.factory('gmp')
-    mpfr = Formula.factory('mpfr')
-    libmpc = Formula.factory('libmpc')
+    gmp = Formula.factory 'gmp'
+    mpfr = Formula.factory 'mpfr'
+    libmpc = Formula.factory 'libmpc'
 
     # GCC will suffer build errors if forced to use a particular linker.
-    ENV.delete('LD')
+    ENV.delete 'LD'
 
     # Sandbox the GCC lib, libexec and include directories so they don't wander
     # around telling small children there is no Santa Claus. This results in a
@@ -92,14 +106,16 @@ class Gcc <Formula
       "--with-mpfr=#{mpfr.prefix}",
       "--with-mpc=#{libmpc.prefix}",
       "--with-system-zlib",
-      "--enable-stage1-checking"
+      "--enable-stage1-checking",
+      "--disable-lto" # Change to enable when 4.6.1 is released
     ]
 
     args << '--disable-nls' unless nls?
 
     if build_everything?
       # Everything but Ada, which requires a pre-existing GCC Ada compiler
-      # (gnat) to bootstrap. GCC 4.6.0 will add go as a language option.
+      # (gnat) to bootstrap. GCC 4.6.0 add go as a language option, but it is
+      # currently only compilable on Linux.
       languages = %w[c c++ fortran java objc obj-c++]
     else
       # The C compiler is always built, but additional defaults can be added
@@ -124,8 +140,8 @@ class Gcc <Formula
       end
     end
 
-    Dir.mkdir('build')
-    Dir.chdir('build') do
+    Dir.mkdir 'build'
+    Dir.chdir 'build' do
       system '../configure', "--enable-languages=#{languages.join(',')}", *args
 
       if profiledbuild?
@@ -137,7 +153,7 @@ class Gcc <Formula
       end
 
       # At this point `make check` could be invoked to run the testsuite. The
-      # deja-gnu formula must be installed in order to do this.
+      # deja-gnu and autogen formulae must be installed in order to do this.
 
       system 'make install'
     end
