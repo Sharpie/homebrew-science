@@ -53,13 +53,12 @@ class Hdf4 <Formula
     end
   end
 
-  def caveats
-    caveats <<-EOS.undent
-      HDF4 has been superseeded by HDF5.  However some programs still require
-      the HDF4 libraries in order to function.  This formula provides a keg-only
-      installation of the HDF4 static libraries and header files so that they
-      may be used to build other pieces of software that provide or require
-      legacy support for HDF4.
+  def caveats; <<-EOS.undent
+      HDF4 has been superseeded by HDF5.  However, the API changed
+      substantially and some programs still require the HDF4 libraries in order
+      to function.  This formula only supplies HDF4 static libraries and header
+      files as the binary tools and dynamic libraries depend on an outdated
+      version of the JPEG library.
     EOS
   end
 end
