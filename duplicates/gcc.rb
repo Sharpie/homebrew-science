@@ -107,6 +107,7 @@ class Gcc < Formula
       "--with-mpc=#{libmpc.prefix}",
       "--with-system-zlib",
       "--enable-stage1-checking",
+      "--enable-plugin",
       "--disable-lto" # Change to enable when 4.6.1 is released
     ]
 
