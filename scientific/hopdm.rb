@@ -1,6 +1,6 @@
 require 'formula'
 
-class Hopdm <Formula
+class Hopdm < Formula
   homepage 'http://www.maths.ed.ac.uk/~gondzio/software/hopdm.html'
   url 'http://dl.dropbox.com/u/72178/dist/hopdm-2.13.tar.gz'
   md5 'e168af8abc46d6af846e08a31503d491'
@@ -23,7 +23,6 @@ class Hopdm <Formula
     end
 
     system 'make'
-
     bin.install 'hopdm'
   end
 end

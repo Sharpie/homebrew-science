@@ -47,13 +47,7 @@ class Adcirc < Formula
 
     system 'make all'
 
-    programs = [
-      'adcirc',
-      'adcprep',
-      'adcpost',
-      'padcirc'
-    ]
-
+    programs = %w[adcirc adcprep adcpost padcirc]
     bin.install programs
   end
 end

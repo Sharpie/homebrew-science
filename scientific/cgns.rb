@@ -21,8 +21,8 @@ class Cgns < Formula
 
     cmake_args << '-DENABLE64_BIT' if Hardware.is_64_bit? and MACOS_VERSION >= 10.6
 
-    Dir.mkdir('build')
-    Dir.chdir('build') do
+    Dir.mkdir 'build'
+    Dir.chdir 'build' do
       system "cmake .. #{std_cmake_parameters} #{cmake_args}"
       system 'make install'
     end

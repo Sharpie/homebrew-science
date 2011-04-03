@@ -12,7 +12,7 @@ class Xmdf < Formula
   def install
     ENV.fortran
 
-    Dir.chdir('build') do
+    Dir.chdir 'build' do
       system "cmake .. #{std_cmake_parameters}"
       system "make install"
     end

@@ -43,14 +43,9 @@ class Swan < Formula
       system 'make ser'
     end
 
-    programs = [
-      'swanrun',
-      'swan.exe',
-      'hcat.exe'
-    ]
-
+    programs = %w[swanrun swan.exe hcat.exe]
     # Set swanrun script to be executable.
-    system 'chmod', '755', 'swanrun'
+    chmod 0755, 'swanrun'
 
     bin.install programs
   end
