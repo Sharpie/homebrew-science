@@ -5,6 +5,8 @@ class Grep <Formula
   url 'http://ftp.gnu.org/gnu/grep/grep-2.7.tar.gz'
   md5 'e848f07e3e79aa7899345d17c7e4115e'
 
+  depends_on 'pcre'
+
   def install
     system "./configure", "--disable-dependency-tracking",
                           "--disable-nls",
