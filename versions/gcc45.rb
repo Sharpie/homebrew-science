@@ -41,8 +41,8 @@ end
 
 class Gcc45 < Formula
   homepage 'http://gcc.gnu.org'
-  url 'ftp://ftp.gnu.org/gnu/gcc/gcc-4.5.2/gcc-4.5.2.tar.bz2'
-  md5 'd6559145853fbaaa0fd7556ed93bce9a'
+  url 'ftp://ftp.gnu.org/gnu/gcc/gcc-4.5.3/gcc-4.5.3.tar.bz2'
+  md5 '8e0b5c12212e185f3e4383106bfa9cc6'
 
   depends_on 'gmp'
   depends_on 'libmpc'
