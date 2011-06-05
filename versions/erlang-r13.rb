@@ -7,7 +7,7 @@ end
 
 class ErlangR13 < Formula
   # Download from GitHub. Much faster than official tarball.
-  url "git://github.com/erlang/otp.git", :tag => "OTP_R13B04"
+  url "https://github.com/erlang/otp.git", :tag => "OTP_R13B04"
   version 'R13B04'
   homepage 'http://www.erlang.org'
 

@@ -2,7 +2,7 @@ require 'formula'
 
 class Dotjs < Formula
   url 'https://github.com/defunkt/dotjs/tarball/1.3'
-  head 'git://github.com/defunkt/dotjs.git'
+  head 'https://github.com/defunkt/dotjs.git'
   homepage 'http://chriswanstrath.com/dotjs/'
   md5 'e8f2d012e136f6c6156a31445593f4d2'
 

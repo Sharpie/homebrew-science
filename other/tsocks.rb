@@ -3,7 +3,7 @@ require 'formula'
 class Tsocks < Formula
   # The original is http://tsocks.sourceforge.net/
   # This GitHub repo is a maintained fork with OSX support
-  head 'git://github.com/pc/tsocks.git'
+  head 'https://github.com/pc/tsocks.git'
   version '1.9'
   homepage 'http://github.com/pc/tsocks'
   md5 'ecb2d291b475122391488f063d17db02'
