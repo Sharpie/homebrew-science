@@ -1,6 +1,6 @@
 require 'formula'
 
-class LlvmGcc <Formula
+class LlvmGcc < Formula
   url 'http://llvm.org/releases/2.8/llvm-gcc-4.2-2.8-x86_64-apple-darwin10.tar.gz'
   version '2.8'
   homepage 'http://llvm.org/docs/CommandGuide/html/llvmgcc.html'

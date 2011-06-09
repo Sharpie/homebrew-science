@@ -1,6 +1,6 @@
 require 'formula'
 
-class Mercurial <Formula
+class Mercurial < Formula
   url 'http://mercurial.selenic.com/release/mercurial-1.7.5.tar.gz'
   homepage 'http://mercurial.selenic.com/downloads/'
   md5 '269e924b3770535cf72049db01c35afa'

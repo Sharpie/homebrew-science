@@ -1,6 +1,6 @@
 require 'formula'
 
-class Httpd <Formula
+class Httpd < Formula
   url 'http://www.bizdirusa.com/mirrors/apache/httpd/httpd-2.2.16.tar.gz'
   homepage 'http://httpd.apache.org/'
   md5 '7f33f2c8b213ad758c009ae46d2795ed'

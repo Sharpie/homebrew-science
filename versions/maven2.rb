@@ -1,6 +1,6 @@
 require 'formula'
 
-class Maven2 <Formula
+class Maven2 < Formula
   url 'http://www.apache.org/dist/maven/binaries/apache-maven-2.2.1-bin.tar.gz'
   homepage 'http://maven.apache.org/'
   md5 '3f829ed854cbacdaca8f809e4954c916'

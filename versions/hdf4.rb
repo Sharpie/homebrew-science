@@ -4,14 +4,14 @@ def fortran?
   ARGV.include? '--enable-fortran'
 end
 
-class Jpeg6 <Formula
+class Jpeg6 < Formula
   url 'http://www.hdfgroup.org/ftp/lib-external/jpeg/src/jpegsrc.v6b.tar.gz'
   md5 '83992a9466af7536da30efe6b51d4064'
   version '6b'
   homepage 'http://www.ijg.org/'
 end
 
-class Hdf4 <Formula
+class Hdf4 < Formula
   url 'http://www.hdfgroup.org/ftp/HDF/HDF_Current/src/hdf-4.2.5.tar.gz'
   md5 '7241a34b722d29d8561da0947c06069f'
   homepage 'http://www.hdfgroup.org'

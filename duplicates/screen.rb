@@ -3,7 +3,7 @@ require 'formula'
 # This duplicates the system "screen", but fixes the ability
 # to use vertical splits.
 
-class Screen <Formula
+class Screen < Formula
   url 'http://ftp.gnu.org/gnu/screen/screen-4.0.3.tar.gz'
   homepage 'http://www.gnu.org/software/screen'
   md5 '8506fd205028a96c741e4037de6e3c42'

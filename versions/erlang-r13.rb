@@ -1,11 +1,11 @@
 require 'formula'
 
-class ErlangR13Manuals <Formula
+class ErlangR13Manuals < Formula
   url 'http://www.erlang.org/download/otp_doc_man_R13B04.tar.gz'
   md5 '681aaef70affc64743f4e8c0675034af'
 end
 
-class ErlangR13 <Formula
+class ErlangR13 < Formula
   # Download from GitHub. Much faster than official tarball.
   url "git://github.com/erlang/otp.git", :tag => "OTP_R13B04"
   version 'R13B04'

@@ -1,6 +1,6 @@
 require 'formula'
 
-class TerminusFont <Formula
+class TerminusFont < Formula
   url 'http://sourceforge.net/projects/terminus-font/files/terminus-font-4.32/terminus-font-4.32.tar.gz'
   homepage 'http://terminus-font.sourceforge.net/'
   md5 '9b74047edcc236a7d4af8abf966c3e7c'

@@ -1,6 +1,6 @@
 require 'formula'
 
-class Zlib <Formula
+class Zlib < Formula
   url 'http://zlib.net/zlib-1.2.5.tar.gz'
   homepage 'http://www.zlib.net/'
   md5 'c735eab2d659a96e5a594c9e8541ad63'

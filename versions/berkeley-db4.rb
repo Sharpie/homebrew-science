@@ -1,6 +1,6 @@
 require 'formula'
 
-class BerkeleyDb4 <Formula
+class BerkeleyDb4 < Formula
   url 'http://download.oracle.com/berkeley-db/db-4.8.30.tar.gz'
   homepage 'http://www.oracle.com/technology/products/berkeley-db/index.html'
   md5 'f80022099c5742cd179343556179aa8c'

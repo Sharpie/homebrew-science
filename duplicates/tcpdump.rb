@@ -1,6 +1,6 @@
 require 'formula'
 
-class Tcpdump <Formula
+class Tcpdump < Formula
   head 'git://github.com/mcr/tcpdump.git'
   homepage 'http://www.tcpdump.org/'
 

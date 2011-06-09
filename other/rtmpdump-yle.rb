@@ -1,6 +1,6 @@
 require 'formula'
 
-class RtmpdumpYle <Formula
+class RtmpdumpYle < Formula
   depends_on 'json-c'
   url 'http://users.tkk.fi/~aajanki/rtmpdump-yle/rtmpdump-yle-1.4.1.tar.gz'
   homepage 'http://users.tkk.fi/~aajanki/rtmpdump-yle/index.html'

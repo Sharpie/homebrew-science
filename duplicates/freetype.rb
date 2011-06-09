@@ -1,6 +1,6 @@
 require 'formula'
 
-class Freetype <Formula
+class Freetype < Formula
   url 'http://download.savannah.gnu.org/releases/freetype/freetype-2.3.12.tar.gz'
   homepage 'http://freetype.sourceforge.net'
   md5 '6fc690d9b34154b51a919ff466cea90c'

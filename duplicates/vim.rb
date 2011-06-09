@@ -1,6 +1,6 @@
 require 'formula'
 
-class Vim <Formula
+class Vim < Formula
   # Get stable versions from hg repo instead of downloading an increasing
   # number of separate patches.
   url 'https://vim.googlecode.com/hg/', :revision => '951641b8784de5175cadf9fdbc361db2b6b45060'

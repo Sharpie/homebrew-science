@@ -1,6 +1,6 @@
 require 'formula'
 
-class Princexml <Formula
+class Princexml < Formula
   url 'http://www.princexml.com/download/prince-7.1-macosx.tar.gz'
   homepage 'http://www.princexml.com'
   md5 'dc239a14b7dbe4e9ff7cb05e7c9d29d2'
