@@ -17,7 +17,6 @@ class Php < Formula
   depends_on 'readline' unless ARGV.include? '--without-readline'
   depends_on 'libxml2'
   depends_on 'jpeg'
-  depends_on 'libpng'
   depends_on 'mcrypt'
 
   if ARGV.include? '--with-mysql'
@@ -50,7 +49,9 @@ class Php < Formula
 
   def patches; DATA; end
 
-  def configure_args
+  def install
+    ENV.O3 # Speed things up
+
     args = [
       "--prefix=#{prefix}",
       "--disable-debug",
@@ -86,7 +87,7 @@ class Php < Formula
       "--enable-gd-native-ttf",
       "--with-mcrypt=#{Formula.factory('mcrypt').prefix}",
       "--with-jpeg-dir=#{Formula.factory('jpeg').prefix}",
-      "--with-png-dir=#{Formula.factory('libpng').prefix}",
+      "--with-png-dir=/usr/X11",
       "--with-gettext=#{Formula.factory('gettext').prefix}",
       "--with-tidy",
       "--mandir=#{man}"
@@ -126,12 +127,7 @@ class Php < Formula
 
     args.push "--with-readline=#{Formula.factory('readline').prefix}" unless ARGV.include? '--without-readline'
 
-    return args
-  end
-  
-  def install
-    ENV.O3 # Speed things up
-    system "./configure", *configure_args
+    system "./configure", *args
 
     unless ARGV.include? '--without-apache'
       # Use Homebrew prefix for the Apache libexec folder
