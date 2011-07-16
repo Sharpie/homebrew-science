@@ -1,9 +1,9 @@
 require 'formula'
 
 class RtmpdumpYle < Formula
-  url 'http://users.tkk.fi/~aajanki/rtmpdump-yle/rtmpdump-yle-1.4.2.tar.gz'
+  url 'http://users.tkk.fi/~aajanki/rtmpdump-yle/rtmpdump-yle-1.4.3.tar.gz'
   homepage 'http://users.tkk.fi/~aajanki/rtmpdump-yle/index.html'
-  md5 '5bdbf955d3b4ddb06eaa13b326d9d80d'
+  md5 'cf82a72eac3d839b11bd93ce426e6648'
 
   depends_on 'json-c'
 
