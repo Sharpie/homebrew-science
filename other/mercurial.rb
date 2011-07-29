@@ -1,9 +1,9 @@
 require 'formula'
 
 class Mercurial < Formula
-  url 'http://mercurial.selenic.com/release/mercurial-1.7.5.tar.gz'
+  url 'http://mercurial.selenic.com/release/mercurial-1.9.1.tar.gz'
   homepage 'http://mercurial.selenic.com/downloads/'
-  md5 '269e924b3770535cf72049db01c35afa'
+  md5 '601990cc58af8316af4e1ea63e19d1be'
 
   def install
     # Make Mercurial into the Cellar.
@@ -17,7 +17,8 @@ class Mercurial < Formula
     libexec.install Dir["#{lib}/python*/site-packages/*"]
 
     # Move the hg startup script into libexec too, and link it from bin
-    libexec.install bin+'hg'
+    bin.mkpath
+    libexec.install HOMEBREW_PREFIX+'share/python'+'hg'
     ln_s libexec+'hg', bin+'hg'
 
     # Remove the hard-coded python invocation from hg
@@ -27,5 +28,9 @@ class Mercurial < Formula
 
     # Install some contribs
     bin.install 'contrib/hgk'
+
+    # Install man pages
+    man1.install 'doc/hg.1'
+    man5.install ['doc/hgignore.5', 'doc/hgrc.5']
   end
 end
