@@ -145,7 +145,7 @@ class Php < Formula
     system "make"
     system "make install"
 
-    system "cp ./php.ini-production #{etc}/php.ini" unless File.exists? "#{etc}/php.ini"
+    etc.install "./php.ini-production" => "php.ini" unless File.exists? etc+"php.ini"
   end
 
  def caveats; <<-EOS
