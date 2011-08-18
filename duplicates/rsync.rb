@@ -16,7 +16,7 @@ class Rsync < Formula
     system "./prepare-source"
     system "./configure", "--disable-debug",
                           "--prefix=#{prefix}",
-                          "--with-rsyncd-conf=#{prefix}/etc/rsyncd.conf",
+                          "--with-rsyncd-conf=#{etc}/rsyncd.conf",
                           "--enable-ipv6"
     system "make"
     system "make install"
