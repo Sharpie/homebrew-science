@@ -56,6 +56,7 @@ class Php < Formula
       "--prefix=#{prefix}",
       "--disable-debug",
       "--with-config-file-path=#{etc}",
+      "--with-config-file-scan-dir=#{etc}/php5/conf.d",
       "--with-iconv-dir=/usr",
       "--enable-exif",
       "--enable-soap",
