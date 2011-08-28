@@ -86,6 +86,7 @@ class Php < Formula
       "--with-curl=/usr",
       "--with-gd",
       "--enable-gd-native-ttf",
+      "--with-freetype-dir=/usr/X11",
       "--with-mcrypt=#{Formula.factory('mcrypt').prefix}",
       "--with-jpeg-dir=#{Formula.factory('jpeg').prefix}",
       "--with-png-dir=/usr/X11",
