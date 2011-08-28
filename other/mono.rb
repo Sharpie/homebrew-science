@@ -1,9 +1,9 @@
 require 'formula'
 
 class Mono < Formula
-  url 'http://download.mono-project.com/sources/mono/mono-2.10.3.tar.bz2'
-  homepage 'http://www.mono-project.com/Release_Notes_Mono_2.10.3'
-  md5 'dbe1be797bbdb5e59d8429ae2a22db07'
+  url 'http://download.mono-project.com/sources/mono/mono-2.10.5.tar.bz2'
+  homepage 'http://www.mono-project.com/Release_Notes_Mono_2.10.5'
+  md5 '1954f11932e82b2ae3b64b2ae9344d90'
 
   def install
     args = ["--prefix=#{prefix}",
