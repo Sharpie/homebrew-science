@@ -1,16 +1,11 @@
 require 'formula'
 
 class Mandoc < Formula
-  url 'http://mdocml.bsd.lv/snapshots/mdocml-1.10.9.tar.gz'
-  homepage ''
-  md5 '86395489bc215a6a764c760845a05f8e'
+  url 'http://mdocml.bsd.lv/snapshots/mdocml-1.11.6.tar.gz'
+  homepage 'http://mdocml.bsd.lv/'
+  md5 'bae43efaa8faf9f902bf3c261c72f6ed'
 
   def install
-    inreplace "Makefile" do |s|
-      s.change_make_var! "PREFIX", prefix
-      s.change_make_var! "MANDIR", man
-    end
-    system "make"
-    system "make install"
+    system "make PREFIX=#{prefix} MANDIR=#{man} install"
   end
 end
