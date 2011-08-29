@@ -58,6 +58,8 @@ class Php < Formula
       "--with-config-file-path=#{etc}",
       "--with-config-file-scan-dir=#{etc}/php5/conf.d",
       "--with-iconv-dir=/usr",
+      "--enable-dba",
+      "--enable-ndbm=/usr",
       "--enable-exif",
       "--enable-soap",
       "--enable-sqlite-utf8",
@@ -71,6 +73,8 @@ class Php < Formula
       "--enable-sysvshm",
       "--enable-sysvmsg",
       "--enable-mbstring",
+      "--enable-mbregex",
+      "--enable-zend-multibyte",
       "--enable-bcmath",
       "--enable-calendar",
       "--with-openssl=/usr",
@@ -91,6 +95,7 @@ class Php < Formula
       "--with-jpeg-dir=#{Formula.factory('jpeg').prefix}",
       "--with-png-dir=/usr/X11",
       "--with-gettext=#{Formula.factory('gettext').prefix}",
+      "--with-snmp=/usr",
       "--with-tidy",
       "--mandir=#{man}"
     ]
