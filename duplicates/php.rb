@@ -18,6 +18,7 @@ class Php < Formula
   depends_on 'libxml2'
   depends_on 'jpeg'
   depends_on 'mcrypt'
+  depends_on 'gmp' if ARGV.include? '--with-gmp'
 
   if ARGV.include? '--with-mysql'
     depends_on 'mysql' => :recommended unless mysql_installed?
@@ -43,7 +44,8 @@ class Php < Formula
      ['--with-fpm', 'Enable building of the fpm SAPI executable (implies --without-apache)'],
      ['--without-apache', 'Build without shared Apache 2.0 Handler module'],
      ['--with-intl', 'Include internationalization support'],
-     ['--without-readline', 'Build without readline support']
+     ['--without-readline', 'Build without readline support'],
+     ['--with-gmp', 'Include GMP support']
    ]
   end
 
@@ -75,6 +77,7 @@ class Php < Formula
       "--enable-mbstring",
       "--enable-mbregex",
       "--enable-zend-multibyte",
+      "--with-gmp",
       "--enable-bcmath",
       "--enable-calendar",
       "--with-openssl=/usr",
