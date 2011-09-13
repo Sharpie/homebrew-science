@@ -1,9 +1,9 @@
 require 'formula'
 
 class Httpd < Formula
-  url 'http://www.bizdirusa.com/mirrors/apache/httpd/httpd-2.2.19.tar.gz'
+  url 'http://mirrors.ibiblio.org/pub/mirrors/apache/httpd/httpd-2.2.21.tar.bz2'
   homepage 'http://httpd.apache.org/'
-  md5 'e9f5453e1e4d7aeb0e7ec7184c6784b5'
+  sha1 'c02f9b05da9a7e316ff37d9053dc76a57ba51cb4'
 
   skip_clean :all
 
