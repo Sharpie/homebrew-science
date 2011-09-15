@@ -9,9 +9,9 @@ def postgres_installed?
 end
 
 class Php < Formula
-  url 'http://www.php.net/get/php-5.3.8.tar.gz/from/this/mirror'
+  url 'http://www.php.net/get/php-5.3.8.tar.bz2/from/this/mirror'
   homepage 'http://php.net/'
-  md5 'f4ce40d5d156ca66a996dbb8a0e7666a'
+  md5 '704cd414a0565d905e1074ffdc1fadfb'
   version '5.3.8'
 
   # So PHP extensions don't report missing symbols
