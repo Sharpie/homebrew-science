@@ -5,6 +5,8 @@ class Httpd < Formula
   homepage 'http://httpd.apache.org/'
   md5 'e9f5453e1e4d7aeb0e7ec7184c6784b5'
 
+  skip_clean :all
+
   def install
     system "./configure", "--disable-debug", "--disable-dependency-tracking",
                           "--prefix=#{prefix}",
