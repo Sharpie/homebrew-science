@@ -103,6 +103,7 @@ class Php < Formula
       "--with-gettext=#{Formula.factory('gettext').prefix}",
       "--with-snmp=/usr",
       "--with-tidy",
+      "--with-mhash",
       "--mandir=#{man}"
     ]
 
