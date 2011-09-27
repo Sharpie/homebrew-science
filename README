@@ -34,3 +34,8 @@ unstable
     Brews that are either works in progress or not thoroughly tested. Here
     there be dragons!
 
+quartz
+    Brews that make use of a native Quartz-based GTK+ library rather than the
+    one in mxcl/master which targets X11. Most everything here is highly
+    experimental and builds keg-only.
+
