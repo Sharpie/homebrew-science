@@ -20,20 +20,13 @@ class Php < Formula
   depends_on 'mcrypt'
   depends_on 'gmp' if ARGV.include? '--with-gmp'
 
+  depends_on 'libevent' if ARGV.include? '--with-fpm'
+  depends_on 'postgresql' if ARGV.include? '--with-pgsql'
+  depends_on 'freetds'if ARGV.include? '--with-mssql'
+  depends_on 'icu4c' if ARGV.include? '--with-intl'
+
   if ARGV.include? '--with-mysql'
     depends_on 'mysql' => :recommended unless mysql_installed?
-  end
-  if ARGV.include? '--with-fpm'
-    depends_on 'libevent'
-  end
-  if ARGV.include? '--with-pgsql'
-    depends_on 'postgresql'
-  end
-  if ARGV.include? '--with-mssql'
-    depends_on 'freetds'
-  end
-  if ARGV.include? '--with-intl'
-    depends_on 'icu4c'
   end
 
   def options
@@ -52,8 +45,6 @@ class Php < Formula
   def patches; DATA; end
 
   def install
-    ENV.O3 # Speed things up
-
     args = [
       "--prefix=#{prefix}",
       "--disable-debug",
@@ -111,7 +102,7 @@ class Php < Formula
     # Build Apache module by default
     unless ARGV.include? '--with-fpm' or ARGV.include? '--without-apache'
       args.push "--with-apxs2=/usr/sbin/apxs"
-      args.push "--libexecdir=#{prefix}/libexec"
+      args.push "--libexecdir=#{libexec}"
     end
 
     if ARGV.include? '--with-mysql'
@@ -143,7 +134,7 @@ class Php < Formula
       # Use Homebrew prefix for the Apache libexec folder
       inreplace "Makefile",
         "INSTALL_IT = $(mkinstalldirs) '$(INSTALL_ROOT)/usr/libexec/apache2' && $(mkinstalldirs) '$(INSTALL_ROOT)/private/etc/apache2' && /usr/sbin/apxs -S LIBEXECDIR='$(INSTALL_ROOT)/usr/libexec/apache2' -S SYSCONFDIR='$(INSTALL_ROOT)/private/etc/apache2' -i -a -n php5 libs/libphp5.so",
-        "INSTALL_IT = $(mkinstalldirs) '#{prefix}/libexec/apache2' && $(mkinstalldirs) '$(INSTALL_ROOT)/private/etc/apache2' && /usr/sbin/apxs -S LIBEXECDIR='#{prefix}/libexec/apache2' -S SYSCONFDIR='$(INSTALL_ROOT)/private/etc/apache2' -i -a -n php5 libs/libphp5.so"
+        "INSTALL_IT = $(mkinstalldirs) '#{libexec}/apache2' && $(mkinstalldirs) '$(INSTALL_ROOT)/private/etc/apache2' && /usr/sbin/apxs -S LIBEXECDIR='#{libexec}/apache2' -S SYSCONFDIR='$(INSTALL_ROOT)/private/etc/apache2' -i -a -n php5 libs/libphp5.so"
     end
 
     if ARGV.include? '--with-intl'
@@ -161,17 +152,17 @@ class Php < Formula
 
  def caveats; <<-EOS
 For 10.5 and Apache:
-    Apache needs to run in 32-bit mode. You can either force Apache to start 
+    Apache needs to run in 32-bit mode. You can either force Apache to start
     in 32-bit mode or you can thin the Apache executable.
 
 To enable PHP in Apache add the following to httpd.conf and restart Apache:
-    LoadModule php5_module    #{prefix}/libexec/apache2/libphp5.so
+    LoadModule php5_module    #{libexec}/apache2/libphp5.so
 
 The php.ini file can be found in:
     #{etc}/php.ini
 
 'Fix' the default PEAR permissions and config:
-    chmod -R ug+w #{prefix}/lib/php
+    chmod -R ug+w #{lib}/php
     pear config-set php_ini #{etc}/php.ini
    EOS
  end
