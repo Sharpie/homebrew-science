@@ -59,7 +59,7 @@ class Php < Formula
       "--with-config-file-scan-dir=#{etc}/php5/conf.d",
       "--with-iconv-dir=/usr",
       "--enable-dba",
-      "--enable-ndbm=/usr",
+      "--with-ndbm=/usr",
       "--enable-exif",
       "--enable-soap",
       "--enable-sqlite-utf8",
