@@ -143,8 +143,8 @@ class Php < Formula
       end
     end
 
-    ENV.deparallelize # parallel build fails on some systems
     system "make"
+    ENV.deparallelize # parallel install fails on some systems
     system "make install"
 
     etc.install "./php.ini-production" => "php.ini" unless File.exists? etc+"php.ini"
