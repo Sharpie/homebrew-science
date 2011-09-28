@@ -149,6 +149,7 @@ class Php < Formula
       end
     end
 
+    ENV.deparallelize # parallel build fails on some systems
     system "make"
     system "make install"
 
