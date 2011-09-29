@@ -1,3 +1,5 @@
+[![For science.](http://i.imgur.com/Bswp1.png) ](http://xkcd.com/585)
+
 Overview
 ========
 
