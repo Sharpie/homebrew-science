@@ -4,6 +4,10 @@ def mysql_installed?
   `which mysql_config`.length > 0
 end
 
+def postgres_installed?
+  `which pg_config`.length > 0
+end
+
 class Php < Formula
   url 'http://www.php.net/get/php-5.3.8.tar.gz/from/this/mirror'
   homepage 'http://php.net/'
@@ -21,17 +25,25 @@ class Php < Formula
   depends_on 'gmp' if ARGV.include? '--with-gmp'
 
   depends_on 'libevent' if ARGV.include? '--with-fpm'
-  depends_on 'postgresql' if ARGV.include? '--with-pgsql'
   depends_on 'freetds'if ARGV.include? '--with-mssql'
   depends_on 'icu4c' if ARGV.include? '--with-intl'
 
-  if ARGV.include? '--with-mysql'
+  if ARGV.include? '--with-mysql' and ARGV.include? '--with-mariadb'
+    raise "Cannot specify more than one MySQL variant to build against."
+  elsif ARGV.include? '--with-mysql'
     depends_on 'mysql' => :recommended unless mysql_installed?
+  elsif ARGV.include? '--with-mariadb'
+    depends_on 'mariadb' => :recommended unless mysql_installed?
+  end
+
+  if ARGV.include? '--with-pgsql'
+    depends_on 'postgresql' => :recommended unless postgres_installed?
   end
 
   def options
    [
      ['--with-mysql', 'Include MySQL support'],
+     ['--with-mariadb', 'Include MariaDB support'],
      ['--with-pgsql', 'Include PostgreSQL support'],
      ['--with-mssql', 'Include MSSQL-DB support'],
      ['--with-fpm', 'Enable building of the fpm SAPI executable (implies --without-apache)'],
