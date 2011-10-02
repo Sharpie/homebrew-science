@@ -80,7 +80,6 @@ class Php < Formula
       "--enable-mbstring",
       "--enable-mbregex",
       "--enable-zend-multibyte",
-      "--with-gmp",
       "--enable-bcmath",
       "--enable-calendar",
       "--with-openssl=/usr",
@@ -106,6 +105,8 @@ class Php < Formula
       "--with-mhash",
       "--mandir=#{man}"
     ]
+
+    args.push "--with-gmp" if ARGV.include? '--with-gmp'
 
     # Enable PHP FPM
     if ARGV.include? '--with-fpm'
