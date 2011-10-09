@@ -14,18 +14,17 @@ class Gnupg2 < Formula
   depends_on 'dirmngr' => :optional
 
   def options
-    [['--without-suffix', 'Install the program as "gpg" instead of "gpg2"']]
+    [['--with-gpg-link', 'Create a symlink from "gpg" to "gpg2"']]
   end
 
   def install
     inreplace 'common/homedir.c', '/var/run', '#{var}/run'
 
-    args = ["--prefix=#{prefix}", "--disable-dependency-tracking"]
-    args << "--program-transform-name='s/gpg2/gpg/'" if ARGV.include? '--without-suffix'
-
-    system "./configure", *args
+    system "./configure", "--prefix=#{prefix}", "--disable-dependency-tracking"
     system "make"
     system "make check"
     system "make install"
+
+    ln_s bin+'gpg2', bin+'gpg' if ARGV.include? '--with-gpg-link'
   end
 end
