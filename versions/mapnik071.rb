@@ -1,6 +1,6 @@
 require 'formula'
 
-class Mapnik < Formula
+class Mapnik071 < Formula
   url 'http://download.berlios.de/mapnik/mapnik-0.7.1.tar.gz'
   homepage 'http://www.mapnik.org/'
   md5 '3a070fdd7c6a3367ad78d95c2387b03b'
