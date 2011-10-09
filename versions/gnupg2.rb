@@ -13,11 +13,17 @@ class Gnupg2 < Formula
   depends_on 'pth'
   depends_on 'dirmngr' => :optional
 
+  def options
+    [['--without-suffix', 'Install the program as "gpg" instead of "gpg2"']]
+  end
+
   def install
     inreplace 'common/homedir.c', '/var/run', '#{var}/run'
 
-    system "./configure", "--prefix=#{prefix}",
-                          "--disable-dependency-tracking"
+    args = ["--prefix=#{prefix}", "--disable-dependency-tracking"]
+    args << "--program-transform-name='s/gpg2/gpg/'" if ARGV.include? '--without-suffix'
+
+    system "./configure", *args
     system "make"
     system "make check"
     system "make install"
