@@ -14,7 +14,7 @@ class CairommQuartz < Formula
   depends_on 'pkg-config' => :build
   depends_on 'libsigc++'
 
-  depends_on 'Sharpie/cairo-quartz'
+  depends_on 'Sharpie/cairo-quartz' => :alt
 
   keg_only 'This formula builds CairoMM for use with Quartz instead of X11, which is experimental.'
 

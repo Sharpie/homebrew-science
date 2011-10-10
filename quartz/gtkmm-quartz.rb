@@ -9,8 +9,8 @@ class GtkmmQuartz < Formula
   depends_on 'glibmm'
   depends_on 'libsigc++'
 
-  depends_on 'Sharpie/gtk+-quartz'
-  depends_on 'Sharpie/pangomm-quartz'
+  depends_on 'Sharpie/gtk+-quartz' => :alt
+  depends_on 'Sharpie/pangomm-quartz' => :alt
 
   keg_only 'This formula builds GtkMM for use with Quartz instead of X11, which is experimental.'
 

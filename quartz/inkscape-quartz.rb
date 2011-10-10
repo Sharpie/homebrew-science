@@ -13,9 +13,9 @@ class InkscapeQuartz < Formula
   depends_on 'little-cms'
   depends_on 'libwpg'
 
-  depends_on 'Sharpie/gtkmm-quartz'
-  depends_on 'Sharpie/librsvg-quartz'
-  depends_on 'Sharpie/poppler-quartz'
+  depends_on 'Sharpie/gtkmm-quartz' => :alt
+  depends_on 'Sharpie/librsvg-quartz' => :alt
+  depends_on 'Sharpie/poppler-quartz' => :alt
 
   def install
     ENV.x11

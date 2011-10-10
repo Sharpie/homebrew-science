@@ -7,7 +7,7 @@ class LibrsvgQuartz < Formula
 
   depends_on 'libcroco'
 
-  depends_on 'Sharpie/gtk+-quartz'
+  depends_on 'Sharpie/gtk+-quartz' => :alt
 
   keg_only 'This formula builds LibRSVG for use with Quartz instead of X11, which is experimental.'
 

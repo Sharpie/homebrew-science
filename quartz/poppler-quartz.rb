@@ -17,7 +17,7 @@ class PopplerQuartz < Formula
   depends_on 'glib'
   depends_on 'qt' if qt?
 
-  depends_on 'Sharpie/cairo-quartz'
+  depends_on 'Sharpie/cairo-quartz' => :alt
 
   keg_only 'This formula builds Poppler for use with Quartz instead of X11, which is experimental.'
 

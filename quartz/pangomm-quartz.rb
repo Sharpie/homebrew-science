@@ -8,8 +8,8 @@ class PangommQuartz < Formula
   depends_on 'pkg-config' => :build
   depends_on 'glibmm'
 
-  depends_on 'Sharpie/cairomm-quartz'
-  depends_on 'Sharpie/pango-quartz'
+  depends_on 'Sharpie/cairomm-quartz' => :alt
+  depends_on 'Sharpie/pango-quartz' => :alt
 
   keg_only 'This formula builds PangoMM for use with Quartz instead of X11, which is experimental.'
 
