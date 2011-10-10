@@ -7,7 +7,7 @@ class TerminusFont < Formula
 
   def install
     system "./configure", "--disable-debug", "--disable-dependency-tracking",
-						  "--x11dir=#{share}/fonts"
+                          "--x11dir=#{share}/fonts"
     system "make"
     system "make install fontdir"
     system "mkfontdir #{share}/fonts"
