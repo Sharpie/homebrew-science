@@ -1,7 +1,7 @@
 require 'formula'
 
 class Ncurses < Formula
-  url 'http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.7.tar.gz'
+  url 'http://ftpmirror.gnu.org/ncurses/ncurses-5.7.tar.gz'
   homepage 'http://www.gnu.org/software/ncurses/'
   md5 'cce05daf61a64501ef6cd8da1f727ec6'
 

@@ -4,7 +4,7 @@ require 'formula'
 # to use vertical splits.
 
 class Screen < Formula
-  url 'http://ftp.gnu.org/gnu/screen/screen-4.0.3.tar.gz'
+  url 'http://ftpmirror.gnu.org/screen/screen-4.0.3.tar.gz'
   homepage 'http://www.gnu.org/software/screen'
   md5 '8506fd205028a96c741e4037de6e3c42'
   version '4.00.03'

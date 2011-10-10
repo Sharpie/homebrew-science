@@ -55,7 +55,7 @@ end
 
 class Gcc < Formula
   homepage 'http://gcc.gnu.org'
-  url 'ftp://ftp.gnu.org/gnu/gcc/gcc-4.6.0/gcc-4.6.0.tar.bz2'
+  url 'http://ftpmirror.gnu.org/gcc/gcc-4.6.0/gcc-4.6.0.tar.bz2'
   md5 '93d1c436bf991564524701259b6285a2'
 
   depends_on 'gmp'
