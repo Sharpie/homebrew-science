@@ -204,3 +204,14 @@ diff -Naur php-5.3.2/ext/tidy/tidy.c php/ext/tidy/tidy.c
  #include "buffio.h"
  
  /* compatibility with older versions of libtidy */
+
+--- a/ext/mssql/php_mssql.h	2010-12-31 21:19:59.000000000 -0500
++++ b/ext/mssql/php_mssql.h	2011-10-12 10:06:52.000000000 -0400
+@@ -65,7 +65,6 @@
+ #define dbfreelogin dbloginfree
+ #endif
+ #define dbrpcexec dbrpcsend
+-typedef unsigned char	*LPBYTE;
+ typedef float           DBFLT4;
+ #else
+ #define MSSQL_VERSION "7.0"
