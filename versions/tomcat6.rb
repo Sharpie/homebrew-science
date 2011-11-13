@@ -1,9 +1,9 @@
 require 'formula'
 
 class Tomcat6 < Formula
-  url 'http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.32/bin/apache-tomcat-6.0.32.tar.gz'
+  url 'http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.33/bin/apache-tomcat-6.0.33.tar.gz'
   homepage 'http://tomcat.apache.org/'
-  md5 '928a960268adf610a7d6fe5c4fcd0b20'
+  md5 '0e86af52d7d31503a98beb04a9d5d8dc'
 
   skip_clean :all
 
