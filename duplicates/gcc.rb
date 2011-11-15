@@ -112,6 +112,12 @@ class Gcc < Formula
     ]
 
     args << '--disable-nls' unless nls?
+    # This is required on systems running a version newer than 10.6. Failure to
+    # use this flag can result in segfauts when using C++ strings.
+    #
+    # http://gcc.gnu.org/bugzilla/show_bug.cgi?id=41645
+    # http://newartisans.com/2009/10/a-c-gotcha-on-snow-leopard
+    args << '--enable-fully-dynamic-string' unless MacOS.leopard?
 
     if build_everything?
       # Everything but Ada, which requires a pre-existing GCC Ada compiler
