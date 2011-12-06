@@ -1,70 +1,87 @@
 # Overview
 
-Recent versions of Homebrew have the ability to install brews from both
-URLs and local file paths.
+This repository contains **unofficial** formulae for [Homebrew](https://github.com/mxcl/homebrew).
 
-This repository contains UNOFFICIAL brews that have not been accepted into
-the master branch.
-
-These brews can be installed via the raw GitHub URLs, or by cloning this
-repository locally and installing off the local disk. For more details see
-the "using" section below.
-
-This replaces the "Homebrew Duplicates" branch which was hosted on adamv's
-fork of Homebrew itself.
+(This replaces the `Homebrew Duplicates` branch that used to live under [adamv's
+main Homebrew fork](https://github.com/adamv/homebrew).)
 
 
-# Contents
+## Quick Start
 
-Brews in this repository are broken out as described below.
+To install homebrew-alt formulae, use one of the following:
 
-  * duplicates:
-    These brews duplicate OS X functionality, though may provide newer or
-    bug-fixed versions.
+ * `brew install [raw GitHub URL]`
+ * `brew install [full path to formula from your local homebrew-alt clone]`
 
-    Homebrew policy is to allow duplicates only in some specific cases.
-
-  * versions:
-    These brews provide mulitple versions of the same software package.
-
-    Homebrew policy is to maintain a single, stable version of a given
-    package.
-
-  * binary:
-    These brews provide only binary installs.
-
-  * non-free:
-    These brews provide non-free software.
-
-  * other:
-    Other brews that have not been accepted into master.
+For more details, see below: "Installing homebrew-alt Formulae".
 
 
-# Using
 
-There are two ways to install packages from this repository.
+# How This Repository Is Organized
 
-## Using Raw URLs
+  *   **duplicates**<br>
+      These brews duplicate OS X functionality, though may provide newer or
+      bug-fixed versions.  
 
-First you need to get your hands on the raw URL. For example, the raw url for
-the princexml formula is:
+      (Homebrew policy discourages duplicates, except in some specific cases.)
 
-`https://github.com/adamv/homebrew-alt/raw/master/non-free/princexml.rb`
+  *   **versions**<br>
+      These formulae provide mulitple versions of the same software package.
+
+      (Homebrew policy is to maintain a single, stable version of a given
+      package.)
+
+  *   **binary**<br>
+      These formulae provide binary-only installations.
+
+  *   **non-free**<br>
+      These formulae provide non-free software.
+
+  *   **other**<br>
+      Other formulae that haven't been accepted into master.
 
 
-Pass that URL as a parameter to the `brew install` command, like so:
 
-`brew install https://github.com/adamv/homebrew-alt/raw/master/non-free/princexml.rb`
+# Installing homebrew-alt Formulae
 
-## Cloning the Repository
+There are two methods to install packages from this repository.
 
-Clone the repository to somewhere that you'll remember:
 
-`git clone https://github.com/adamv/homebrew-alt.git /usr/local/LibraryAlt`
+## Method 1: Raw URL
 
-This example creates a `LibraryAlt` directory under `/usr/local`.
+First, find the raw URL for the formula you want. For example, the raw URL for
+the `princexml` formula is:
 
-Then to install a formula pass the full path to the formula into the
-`brew install` command. Here's another example that installs princexml:
+```
+    https://github.com/adamv/homebrew-alt/raw/master/non-free/princexml.rb
+```
 
-`brew install /usr/local/LibraryAlt/non-free/princexml.rb`
+
+Once you know the raw URL, simply use `brew install [raw URL]`, like so:
+
+```
+    brew install https://github.com/adamv/homebrew-alt/raw/master/non-free/princexml.rb
+```
+
+
+## Method 2: Repository Clone
+
+First, clone this repository.  Be sure to choose a good location!  
+
+For example, clone to `LibraryAlt` under `/usr/local`:
+
+```
+    git clone https://github.com/adamv/homebrew-alt.git /usr/local/LibraryAlt
+```
+
+
+Once you've got your clone, simply use `brew install [full path to formula]`.
+
+For example, to install `princexml`:
+
+```
+    brew install /usr/local/LibraryAlt/non-free/princexml.rb
+```
+
+
+That's it!
