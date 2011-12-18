@@ -13,7 +13,7 @@ class PkgDownloadStrategy < CurlDownloadStrategy
   end
 end
 
-class AppleGcc < Formula
+class AppleGcc42 < Formula
   homepage 'http://r.research.att.com/tools/'
   url 'http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg'
   md5 '3ccf46da27aaba17706b420711fb997e'
@@ -50,7 +50,7 @@ class AppleGcc < Formula
       NOTE:
       This formula provides components that were removed from XCode in the 4.2
       release. There is no reason to install this formula if you are using a
-      version of XCode prior to 4.1.
+      version of XCode prior to 4.2.
 
       This formula contains compilers built from Apple's GCC sources, build
       5666.3, available from:
