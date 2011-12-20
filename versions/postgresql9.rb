@@ -3,8 +3,8 @@ require 'hardware'
 
 class Postgresql9 < Formula
   homepage 'http://www.postgresql.org/'
-  url 'http://ftp9.us.postgresql.org/pub/mirrors/postgresql/source/v9.0.5/postgresql-9.0.5.tar.bz2'
-  md5 '86816eb8a8513532957b96045abdfef9'
+  url 'http://ftp.postgresql.org/pub/source/v9.0.6/postgresql-9.0.6.tar.bz2'
+  md5 '4ad7e4fc31ef8b8a75a3e4243933963f'
 
   depends_on 'readline'
   depends_on 'libxml2' if MacOS.leopard? # Leopard libxml is too old
