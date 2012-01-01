@@ -1,9 +1,9 @@
 require 'formula'
 
 class TerminusFont < Formula
-  url 'http://sourceforge.net/projects/terminus-font/files/terminus-font-4.32/terminus-font-4.32.tar.gz'
   homepage 'http://terminus-font.sourceforge.net/'
-  md5 '9b74047edcc236a7d4af8abf966c3e7c'
+  url 'http://sourceforge.net/projects/terminus-font/files/terminus-font-4.36/terminus-font-4.36.tar.gz'
+  sha256 '7b0dcebd8ef2e36aeeb7fcd97082ad881e95b2871e40c9a6255377bea6bcd345'
 
   def install
     system "./configure", "--disable-debug", "--disable-dependency-tracking",
