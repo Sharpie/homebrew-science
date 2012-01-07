@@ -8,10 +8,23 @@ class Openssl < Formula
 
   keg_only :provided_by_osx
 
+  def options
+    [['--64-bit', 'Build for the x86_64 architecture.']]
+  end
+
   def install
-    system "./config", "--prefix=#{prefix}",
-                       "--openssldir=#{etc}/openssl",
-                       "zlib-dynamic", "shared"
+    args = ["./Configure",
+            "--prefix=#{prefix}",
+            "--openssldir=#{etc}/openssl",
+            "zlib-dynamic", "shared"]
+
+    if ARGV.include? '--64-bit'
+      args << 'darwin64-x86_64-cc'
+    else
+      args << 'darwin-i386-cc'
+    end
+
+    system "perl", *args
 
     ENV.deparallelize
     system "make"
