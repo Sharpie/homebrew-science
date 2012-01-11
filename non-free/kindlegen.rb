@@ -1,16 +1,19 @@
 require 'formula'
 
 class Kindlegen < Formula
-  url 'http://s3.amazonaws.com/kindlegen/KindleGen_Mac_i386_v1.2.zip'
-  homepage 'http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000234621'
-  md5 '2a156d26ef337d3feb1e47fcd1e1e698'
+  url 'http://s3.amazonaws.com/kindlegen/KindleGen_Mac_i386_v2.zip'
+  homepage 'http://www.amazon.com/gp/feature.html?docId=1000234621'
+  md5 '047940fa927751ca426e0cfab0f30815'
+  version '2.3'
+
+  skip_clean 'bin'
 
   def install
-    bin.mkpath
+    bin.install Dir['kindlegen']
+  end
 
-    prefix.install Dir['*']
-    chmod 0755, prefix+'kindlegen'
-    ln_s prefix+'kindlegen', bin+'kindlegen'
+  def test
+    system "kindlegen"
   end
 
   def caveats; <<-EOS
@@ -19,9 +22,6 @@ If this is unacceptable you should uninstall.
 
 License information at:
 http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000234621
-
-For samples, please check:
-  #{prefix}/Sample and #{prefix}/MultimediaSample
 EOS
   end
 end
