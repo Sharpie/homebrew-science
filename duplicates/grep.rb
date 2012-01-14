@@ -8,6 +8,11 @@ class Grep < Formula
   depends_on 'pcre'
 
   def install
+    # find the correct libpcre
+    pcre = Formula.factory('pcre')
+    ENV.append 'LDFLAGS', "-L#{pcre.lib} -lpcre"
+    ENV.append 'CPPFLAGS', "-I#{pcre.include}"
+
     system "./configure", "--disable-dependency-tracking",
                           "--disable-nls",
                           "--prefix=#{prefix}",
