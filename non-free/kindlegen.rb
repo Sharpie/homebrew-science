@@ -1,9 +1,9 @@
 require 'formula'
 
 class Kindlegen < Formula
-  url 'http://s3.amazonaws.com/kindlegen/KindleGen_Mac_i386_v2.zip'
+  url 'http://s3.amazonaws.com/kindlegen/KindleGen_Mac_i386_v1.2.zip'
   homepage 'http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000234621'
-  md5 '047940fa927751ca426e0cfab0f30815'
+  md5 '2a156d26ef337d3feb1e47fcd1e1e698'
 
   def install
     bin.mkpath
