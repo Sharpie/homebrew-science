@@ -10,6 +10,7 @@ class Httpd < Formula
   def install
     system "./configure", "--disable-debug", "--disable-dependency-tracking",
                           "--prefix=#{prefix}",
+                          "--mandir=#{man}",
                           "--enable-layout=GNU",
                           "--enable-mods-shared=all",
                           "--with-ssl=/usr",
