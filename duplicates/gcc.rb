@@ -8,6 +8,8 @@ require 'formula'
 # This should be fixed in GCC 4.6.1:
 #   http://lists.macosforge.org/pipermail/macports-dev/2011-March/014278.html
 #
+# (LTO doesn't seem to be fixed even in 4.6.2)
+#
 # GCC 4.6.0 adds the gccgo compiler for the Go language. However, gccgo "is
 # currently known to work on GNU/Linux and RTEMS. Solaris support is in
 # progress. It may or may not work on other platforms."
@@ -55,8 +57,8 @@ end
 
 class Gcc < Formula
   homepage 'http://gcc.gnu.org'
-  url 'http://ftpmirror.gnu.org/gcc/gcc-4.6.0/gcc-4.6.0.tar.bz2'
-  md5 '93d1c436bf991564524701259b6285a2'
+  url 'http://ftpmirror.gnu.org/gcc/gcc-4.6.2/gcc-4.6.2.tar.bz2'
+  md5 '028115c4fbfb6cfd75d6369f4a90d87e'
 
   depends_on 'gmp'
   depends_on 'libmpc'
