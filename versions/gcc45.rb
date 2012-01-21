@@ -65,12 +65,22 @@ class Gcc45 < Formula
   skip_clean :all
 
   def install
-    gmp = Formula.factory 'gmp'
-    mpfr = Formula.factory 'mpfr'
-    libmpc = Formula.factory 'libmpc'
+    # Force 64-bit on systems that use it. Build failures reported for some
+    # systems when this is not done.
+    ENV.m64 if MacOS.prefer_64_bit?
 
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete 'LD'
+
+    # This is required on systems running a version newer than 10.6, and
+    # it's probably a good idea regardless.
+    #
+    # https://trac.macports.org/ticket/27237
+    ENV.append 'CXXFLAGS', '-U_GLIBCXX_DEBUG -U_GLIBCXX_DEBUG_PEDANTIC'
+
+    gmp = Formula.factory 'gmp'
+    mpfr = Formula.factory 'mpfr'
+    libmpc = Formula.factory 'libmpc'
 
     # Sandbox the GCC lib, libexec and include directories so they don't wander
     # around telling small children there is no Santa Claus. This results in a
@@ -93,20 +103,15 @@ class Gcc45 < Formula
       "--with-mpc=#{libmpc.prefix}",
       "--with-system-zlib",
       "--enable-stage1-checking",
-      "--enable-plugin"
+      "--enable-plugin",
+      "--disable-lto"
     ]
 
     args << '--disable-nls' unless nls?
-    # This is required on systems running a version newer than 10.6. Failure to
-    # use this flag can result in segfauts when using C++ strings.
-    #
-    # http://gcc.gnu.org/bugzilla/show_bug.cgi?id=41645
-    # http://newartisans.com/2009/10/a-c-gotcha-on-snow-leopard
-    args << '--enable-fully-dynamic-string' unless MacOS.leopard?
 
     if build_everything?
       # Everything but Ada, which requires a pre-existing GCC Ada compiler
-      # (gnat) to bootstrap. GCC 4.6.0 will add go as a language option.
+      # (gnat) to bootstrap.
       languages = %w[c c++ fortran java objc obj-c++]
     else
       # The C compiler is always built, but additional defaults can be added
