@@ -120,7 +120,7 @@ class Gcc < Formula
       "--with-system-zlib",
       "--enable-stage1-checking",
       "--enable-plugin",
-      "--disable-lto",
+      "--enable-lto",
       "--disable-multilib"
     ]
 
