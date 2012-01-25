@@ -48,11 +48,21 @@ def profiledbuild?
   ARGV.include? '--enable-profiled-build'
 end
 
+def dragonegg?
+  ARGV.include? '--with-dragonegg'
+end
+
 class Ecj < Formula
   # Little Known Fact: ecj, Eclipse Java Complier, is required in order to
   # produce a gcj compiler that can actually parse Java source code.
   url 'ftp://sourceware.org/pub/java/ecj-4.5.jar'
   md5 'd7cd6a27c8801e66cbaa964a039ecfdb'
+end
+
+class Dragonegg < Formula
+  homepage 'http://dragonegg.llvm.org'
+  url 'http://llvm.org/releases/3.0/dragonegg-3.0.tar.gz'
+  md5 '3704d215fb4343040eaff66a7a87c63a'
 end
 
 class Gcc < Formula
@@ -64,6 +74,8 @@ class Gcc < Formula
   depends_on 'libmpc'
   depends_on 'mpfr'
 
+  depends_on 'llvm' if dragonegg?
+
   def options
     [
       ['--enable-cxx', 'Build the g++ compiler'],
@@ -73,12 +85,17 @@ class Gcc < Formula
       ['--enable-objcxx', 'Enable Objective-C++ language support'],
       ['--enable-all-languages', 'Enable all compilers and languages, except Ada'],
       ['--enable-nls', 'Build with natural language support'],
-      ['--enable-profiled-build', 'Make use of profile guided optimization when bootstrapping GCC']
+      ['--enable-profiled-build', 'Make use of profile guided optimization when bootstrapping GCC'],
+      ['--with-dragonegg', 'Build the LLVM Dragonegg plugin']
     ]
   end
 
   # Dont strip compilers.
   skip_clean :all
+
+  def gcc_plugins
+    share + "gcc-#{version}" + "plugins"
+  end
 
   def install
     # Force 64-bit on systems that use it. Build failures reported for some
@@ -104,6 +121,7 @@ class Gcc < Formula
     # install multiple versions of GCC" section of the GCC FAQ:
     #     http://gcc.gnu.org/faq.html#multiple
     gcc_prefix = prefix + 'gcc'
+    gcc_suffix = "-#{version.slice(/\d\.\d/)}"
 
     args = [
       # Sandbox everything...
@@ -113,7 +131,7 @@ class Gcc < Formula
       # ...and the binaries...
       "--bindir=#{bin}",
       # ...which are tagged with a suffix to distinguish them.
-      "--program-suffix=-#{version.slice(/\d\.\d/)}",
+      "--program-suffix=#{gcc_suffix}",
       "--with-gmp=#{gmp.prefix}",
       "--with-mpfr=#{mpfr.prefix}",
       "--with-mpc=#{libmpc.prefix}",
@@ -170,6 +188,49 @@ class Gcc < Formula
       # deja-gnu and autogen formulae must be installed in order to do this.
 
       system 'make install'
+    end
+
+    if dragonegg?
+      Dragonegg.new.brew do
+        # For some reason, a regular 'system make' does not work---the Makefile
+        # barfs all over the place due to variables not getting set correctly.
+        # It *has* to be run within a bash instance.
+        #
+        # Frickin' wierd.
+        system "/bin/bash -c 'make GCC=#{bin}/gcc#{gcc_suffix}'"
+        gcc_plugins.install 'dragonegg.so'
+
+        # Create shell script wrappers that run the compilers with Dragonegg
+        # loaded.  These scripts will be named `llvm-compiler-version` since
+        # they basically do the same job as the llvm-gcc binaries.
+        #
+        # gcj is an option, but too buggy at the moment.
+        (%w[c c++ fortran] & languages).each do |lang|
+          case lang
+          when 'c'
+            compiler = 'gcc'
+          when 'c++'
+            compiler = 'g++'
+          when 'fortran'
+            compiler = 'gfortran'
+          end
+          compiler += gcc_suffix
+
+          # NOTE:
+          # Supposedly Debian/Ubuntu has a Dragonegg package that uses a
+          # more sophisticated shell script that makes the wrapped gcc act more
+          # like llvm-gcc by translating common arguments on the fly. Example:
+          #
+          #    llvm-gcc: -emit-llvm => dragonegg: -fplugin-arg-dragonegg-emit-ir
+          #
+          # Worth checking out to replace the simple wrapper implemented below.
+          (bin + "llvm-#{compiler}").write <<-EOF.undent
+            #!/bin/sh
+            exec #{bin + compiler} -fplugin=#{gcc_plugins}/dragonegg.so "$@"
+          EOF
+          chmod 0755, bin + "llvm-#{compiler}"
+        end
+      end
     end
   end
 end
