@@ -33,6 +33,7 @@ class Adcirc < Formula
   end
 
   depends_on 'open-mpi'
+  depends_on 'netcdf'
 
   def patches
     {:p1 => DATA}
@@ -45,20 +46,18 @@ class Adcirc < Formula
     ENV.deparallelize
     Dir.chdir "work"
 
-    system 'make all'
+    system "make all NETCDF=enable NETCDFHOME=#{HOMEBREW_PREFIX}"
 
     programs = %w[adcirc adcprep adcpost padcirc]
     bin.install programs
   end
 end
 __END__
-Patch to build ADCIRC using Homebrew. Needs to be replaced by an `inreplace`
-operation, but inreplace cannot deal with ':='.
 diff --git a/work/cmplrflags.mk b/work/cmplrflags.mk
-index cfd75c4..c99454f 100644
+index 304e74e..7383018 100644
 --- a/work/cmplrflags.mk
 +++ b/work/cmplrflags.mk
-@@ -810,21 +810,17 @@ endif
+@@ -723,23 +723,19 @@ endif
  # i386-apple-darwin using intel compilers
  
  ifneq (,$(findstring i386-darwin,$(MACHINE)-$(OS)))
@@ -69,20 +68,29 @@ index cfd75c4..c99454f 100644
 -# FFLAGS1	:=  $(INCDIRS) -nowarn -O3    -fixed -132 -DIBM -I .
 -  FFLAGS2	:=  $(INCDIRS) -nowarn -O3    -fixed -132 -I . 
 -  FFLAGS3	:=  $(INCDIRS) -nowarn -O3    -fixed -132 -I .
-+  PPFC	        := gfortran
-+  FC	        := gfortran
-+  PFC	        := mpif90
-+  FFLAGS1       :=  $(INCDIRS) $(CFLAGS) -ffree-line-length-none -ffixed-line-length-none
-+  FFLAGS2	:=  $(FFLAGS1)
-+  FFLAGS3	:=  $(FFLAGS1)
-   DA  	   	:=  -DREAL8 -DCSCA -DLINUX  
-   DP  	   	:=  -DREAL8 -DCSCA -DLINUX -DCMPI -DNETCDF_DEBUG 
-   DPRE	   	:=  -DREAL8 -DLINUX  
-   IMODS  	:=  -I
+-  DA  	   	:=  -DREAL8 -DCSCA -DLINUX  
+-  DP  	   	:=  -DREAL8 -DCSCA -DLINUX -DCMPI -DNETCDF_DEBUG 
+-  DPRE	   	:=  -DREAL8 -DLINUX  
+-  IMODS  	:=  -I
 -  CC            :=  gcc  
-   CCBE          :=  $(CC)
+-  CCBE          :=  $(CC)
 -  CFLAGS        :=  $(INCDIRS) -O3 -DLINUX
 -  LDFLAGS	:=  
-   FLIBS	        :=  
-   MSGLIBS	:=  
+-  FLIBS	        :=  
+-  MSGLIBS	:=  
++  PPFC	  := gfortran
++  FC	    := gfortran
++  PFC	    := mpif90
++  FFLAGS1 := $(INCDIRS) $(CFLAGS) -ffree-line-length-none -ffixed-line-length-none
++  FFLAGS2	:= $(FFLAGS1)
++  FFLAGS3	:= $(FFLAGS1)
++  DA  	  := -DREAL8 -DCSCA -DLINUX
++  DP  	  := -DREAL8 -DCSCA -DLINUX -DCMPI -DNETCDF_DEBUG
++  DPRE	  := -DREAL8 -DLINUX
++  IMODS  	:= -I
++  CCBE    := $(CC)
++  FLIBS	  := -lnetcdff
++  MSGLIBS	:=
    $(warning (INFO) Corresponding machine found in cmplrflags.mk.)
+   ifneq ($(FOUND),TRUE)
+      FOUND := TRUE
