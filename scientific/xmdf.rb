@@ -2,8 +2,8 @@ require 'formula'
 
 class Xmdf < Formula
   homepage 'http://www.xmdf.org'
-  url 'http://dl.dropbox.com/u/72178/dist/xmdf-unix-1.7.tar.gz'
-  md5 'a7d1769044a782b0d2f4c286d831fd9d'
+  url 'http://dl.dropbox.com/u/72178/dist/xmdf-unix-1.9.tar.bz2'
+  md5 '521d91251eba541bec92cea95c6af478'
 
   depends_on 'hdf5'
 
@@ -21,7 +21,7 @@ class Xmdf < Formula
   def caveats
     caveats = <<-EOS
 This is an unoffical re-packaging of the XMDF source code with a CMake build
-system. For the origional souce code and documentation, see:
+system. For the original souce code and documentation, see:
 
     http://www.xmdf.org
     EOS
