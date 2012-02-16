@@ -6,6 +6,7 @@ class SpatialiteGui < Formula
   md5 '0b2f8eb95392ddcd8993787578c6e45f'
 
   depends_on 'libspatialite'
+  depends_on 'libgaiagraphics'
 
   def patches
     # Compatibility fix for wxWidgets 2.9.x and a patch to allow GUI to run
