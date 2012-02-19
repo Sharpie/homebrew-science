@@ -22,6 +22,10 @@ repository locally and installing off the local disk.
 Contents
 ========
 
+gis
+    Brews for geospatial tools and libraries.
+
+
 scientific
     Brews for scientific tools or libraries.
 
