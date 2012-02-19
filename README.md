@@ -23,25 +23,29 @@ Contents
 ========
 
 gis
-    Brews for geospatial tools and libraries.
-
-
-scientific
-    Brews for scientific tools or libraries.
+---
+Brews for geospatial tools and libraries.
 
 non-free
-    These brews provide non-free software. In most cases, the user will be
-    required to obtain the source code and place it in Homebrew's cache
-    directory before installing. The cache directory is usually located at:
+--------
+These brews provide non-free software. In most cases, the user will be
+required to obtain the source code and place it in Homebrew's cache
+directory before installing. The cache directory is usually located at:
 
-        ~/Library/Caches/Homebrew
-
-unstable
-    Brews that are either works in progress or not thoroughly tested. Here
-    there be dragons!
+    ~/Library/Caches/Homebrew
 
 quartz
-    Brews that make use of a native Quartz-based GTK+ library rather than the
-    one in mxcl/master which targets X11. Most everything here is highly
-    experimental and builds keg-only.
+------
+Brews that make use of a native Quartz-based GTK+ library rather than the
+one in mxcl/master which targets X11. Most everything here is highly
+experimental and builds keg-only.
+
+scientific
+----------
+Brews for scientific tools or libraries.
+
+unstable
+--------
+Brews that are either works in progress or not thoroughly tested. Here
+there be dragons!
 
