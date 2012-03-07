@@ -2,8 +2,8 @@ require 'formula'
 
 class Xmdf < Formula
   homepage 'http://www.xmdf.org'
-  url 'http://dl.dropbox.com/u/72178/dist/xmdf-unix-1.9.tar.bz2'
-  md5 '521d91251eba541bec92cea95c6af478'
+  url 'https://github.com/Sharpie/xmdf-unix.git', :tag => '1.9-1'
+  version '1.9-1'
 
   depends_on 'hdf5'
 
