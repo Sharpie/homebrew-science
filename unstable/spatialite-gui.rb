@@ -11,12 +11,13 @@ class SpatialiteGui < Formula
   depends_on 'wxmac'
 
   def patches
-    # Compatibility fix for wxWidgets 2.9.x and a patch to allow GUI to run
-    # without the need for building an app bundle around it.
-    [
-      'https://gist.github.com/raw/1847199/0001-Use-GetEventHandler-to-call-AddPendingEvent.patch',
-      'https://gist.github.com/raw/1847199/0002-Allow-GUI-on-OS-X-without-being-an-app-bundle.patch'
-    ]
+    patch_set = {
+      :p1 => DATA
+    }
+    # Compatibility fix for wxWidgets 2.9.x. Remove on next release.
+    patch_set[:p0] = 'https://www.gaia-gis.it/fossil/spatialite_gui/vpatch?from=d8416d26358a24dc&to=b5b920d8d654dd0e'
+
+    patch_set
   end
 
   def install
@@ -28,3 +29,60 @@ class SpatialiteGui < Formula
     system "make install"
   end
 end
+
+__END__
+
+For some strange reason, wxWidgets does not take the required steps to register
+programs as GUI apps like other toolkits do. This necessitates the creation of
+an app bundle on OS X.
+
+This clever hack sidesteps the headache of packing simple programs into app
+bundles:
+
+  http://www.miscdebris.net/blog/2010/03/30/
+    solution-for-my-mac-os-x-gui-program-doesnt-get-focus-if-its-outside-an-application-bundle
+---
+ Main.cpp |   21 +++++++++++++++++++++
+ 1 files changed, 21 insertions(+), 0 deletions(-)
+
+diff --git a/Main.cpp b/Main.cpp
+index a857e8a..9c90afb 100644
+--- a/Main.cpp
++++ b/Main.cpp
+@@ -71,6 +71,12 @@
+ #define unlink	_unlink
+ #endif
+ 
++#ifdef __WXMAC__
++// Allow the program to run and recieve focus without creating an app bundle.
++#include <Carbon/Carbon.h>
++extern "C" { void CPSEnableForegroundOperation(ProcessSerialNumber* psn); }
++#endif
++
+ IMPLEMENT_APP(MyApp)
+      bool MyApp::OnInit()
+ {
+@@ -86,6 +92,21 @@ IMPLEMENT_APP(MyApp)
+   frame->Show(true);
+   SetTopWindow(frame);
+   frame->LoadConfig(path);
++
++#ifdef __WXMAC__
++  // Acquire the necessary resources to run as a GUI app without being inside
++  // an app bundle.
++  //
++  // Credit for this hack goes to:
++  //
++  //   http://www.miscdebris.net/blog/2010/03/30/solution-for-my-mac-os-x-gui-program-doesnt-get-focus-if-its-outside-an-application-bundle
++  ProcessSerialNumber psn;
++
++  GetCurrentProcess( &psn );
++  CPSEnableForegroundOperation( &psn );
++  SetFrontProcess( &psn );
++#endif
++
+   return true;
+ }
+ 
+-- 
+1.7.9
