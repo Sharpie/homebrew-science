@@ -3,10 +3,12 @@ require 'formula'
 class SpatialiteGui < Formula
   homepage 'https://www.gaia-gis.it/fossil/spatialite_gui/index'
   url 'http://www.gaia-gis.it/gaia-sins/spatialite_gui-1.5.0-stable.tar.gz'
-  md5 '0b2f8eb95392ddcd8993787578c6e45f'
+  sha1 'b8cfe3def8c77928f7c9fcc86bae3c99179fa486'
 
   depends_on 'libspatialite'
   depends_on 'libgaiagraphics'
+
+  depends_on 'wxmac'
 
   def patches
     # Compatibility fix for wxWidgets 2.9.x and a patch to allow GUI to run
@@ -18,14 +20,6 @@ class SpatialiteGui < Formula
   end
 
   def install
-    opoo <<-EOS.undent
-      At the moment, this formula is extremely experimental and requires wxmac
-      to be installed using the --devel flag. No effort is made to detect this
-      dependency and the formula may fail.
-
-      Hopefully, this will be improved in the future.
-    EOS
-
     # This lib doesn't get picked up by configure.
     ENV.append 'LDFLAGS', '-lwx_osx_cocoau_aui-2.9'
 
