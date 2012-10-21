@@ -24,16 +24,16 @@ cache directory is located at:
 end
 
 class Adcirc < Formula
-  url 'adc49_21.tar.gz'
+  url 'adc49_21.tar.bz2'
   homepage 'http://adcirc.org/'
-  md5 'e3d3717fc0fa2b540d3d8d88a017a224'
+  sha1 '984c9be240716766c9157fdceab842e594ed1d0a'
 
   def download_strategy
     CachedFileDownloadStrategy
   end
 
-  depends_on 'open-mpi'
   depends_on 'netcdf'
+  depends_on MPIDependency.new(:cc, :f90)
 
   def patches
     {:p1 => DATA}
@@ -72,16 +72,16 @@ index 304e74e..7383018 100644
 -  DP  	   	:=  -DREAL8 -DCSCA -DLINUX -DCMPI -DNETCDF_DEBUG 
 -  DPRE	   	:=  -DREAL8 -DLINUX  
 -  IMODS  	:=  -I
--  CC            :=  gcc  
+-  CC            :=  $(CC)
 -  CCBE          :=  $(CC)
--  CFLAGS        :=  $(INCDIRS) -O3 -DLINUX
+-  CFLAGS        :=  $(INCDIRS) $(CFLAGS)
 -  LDFLAGS	:=  
 -  FLIBS	        :=  
 -  MSGLIBS	:=  
 +  PPFC	  := gfortran
 +  FC	    := gfortran
 +  PFC	    := mpif90
-+  FFLAGS1 := $(INCDIRS) $(CFLAGS) -ffree-line-length-none -ffixed-line-length-none
++  FFLAGS1 := $(INCDIRS) $(FCFLAGS) -ffree-line-length-none -ffixed-line-length-none
 +  FFLAGS2	:= $(FFLAGS1)
 +  FFLAGS3	:= $(FFLAGS1)
 +  DA  	  := -DREAL8 -DCSCA -DLINUX
@@ -94,3 +94,22 @@ index 304e74e..7383018 100644
    $(warning (INFO) Corresponding machine found in cmplrflags.mk.)
    ifneq ($(FOUND),TRUE)
       FOUND := TRUE
+
+diff --git a/metis/Lib/timing.c b/metis/Lib/timing.c
+index 49e9e6a..aa637d9 100755
+--- a/metis/Lib/timing.c
++++ b/metis/Lib/timing.c
+@@ -17,11 +17,13 @@
+ #include <time.h>
+ 
+ /* Needed on modern Linux platforms cause' they don't listen to -D__USE_BSD*/
++#ifndef __APPLE__
+ struct timezone
+   {
+     int tz_minuteswest;         /* Minutes west of GMT.  */
+     int tz_dsttime;             /* Nonzero if DST is ever in effect.  */
+   };
++#endif
+ 
+ 
+ 
